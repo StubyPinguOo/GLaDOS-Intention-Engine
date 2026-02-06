@@ -34,11 +34,11 @@ The GLaDOS Intention Engine (v3.1.1) utilizes a modular architecture to turn the
 Before deploying the "Brain" yourself, ensure the following infrastructure is active within your facility:
 ---
 
-**1. The Spirit (Local LLM):** Llama 3.1 8B running via Ollama.
+* **1. The Spirit (Local LLM):** Llama 3.1 8B running via Ollama.
 
 ---
 
-* **The Senses (Virtualization & Networking):**
+* **2. The Senses (Virtualization & Networking):**
     * **Hypervisor:** Home Assistant (HAOS) should ideally run within a **KVM/QEMU** environment for the best performance.
     * **Networking (The "br0" Bridge):** To ensure GLaDOS can "see" your entire home, the host must be configured with a **Linux Bridge (br0)**. Using a bridge instead of the default NAT (virbr0) allows the VM to exist as a peer on your local network with its own IP. This is mandatory for discovery protocols like mDNS to find your smart bulbs and media players.
     * **Hardware Passthrough:** For stable Zigbee control, pass your USB dongle (e.g., SONOFF) through to the VM using **Persistent ID Mapping** (via `/dev/serial/by-id/` or Vendor/Product ID) rather than a temporary Bus/Port address. This ensures the connection survives host reboots or hardware resets.
@@ -46,7 +46,7 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
 
 ---
 
-* **The Logic Core (The Cortex):** The `glados_cortex.yaml` script is how GLaDOS is able to control your facility's central nervous system.
+* **3. The Logic Core (The Cortex):** The `glados_cortex.yaml` script is how GLaDOS is able to control your facility's central nervous system.
     1. **Purpose:** It bridges the gap between the AI's determination of your "intent" ("I want it dark") and your actual hardware (turning off lights, but no area was specified, so I'll default to the living room lights as per required protocol).
     2. **Why It Exists:** Without the Cortex, an AI might "hallucinate" and try to control devices that don't exist. The Cortex ensures that the AI can only execute a pre-approved list of "Deterministic" commands, making the system much safer and more reliable.
     3. **How to Enable It:** * Open your Home Assistant dashboard and navigate to **Settings > Automations & Scenes > Scripts**.
@@ -55,7 +55,7 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
 
 ---
 
-* **The Addons:** These addons are required for GLaDOS to properly perform her administrative duties:
+* **4. The Addons:** These addons are required for GLaDOS to properly perform her administrative duties:
     1. **HACS:** Required for advanced facility integrations and custom protocol support.
     2. **Extended OpenAI Conversation:** Installed via HACS and configured to your local Llama 3.1 8B model. *(Note: The standard Ollama integration currently lacks the "functions" block required for hardware orchestration.)*
     3. **Samba Share:** Required to place the custom GLaDOS voice files (`.onnx` + `.json`) in the directory accessible by Piper.
@@ -70,11 +70,13 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
 
 ---
 
-* **The Weather Satellite:** `sensor.glados_weather_context` must be configured in your `configuration.yaml` (See `config/weather_satellite.yaml`).
-    1. The Weather Satellite is "optional" but highly recommended for full temporal awareness.
-    2. Without it, GLaDOS is blind to future conditions and can only report current telemetry.
-    3. It is configured by default for the `weather.forecast_home` entity; update the entityID in `weather_satellite.yaml` if using a different provider.
-    4. **Installation:** Use the **File Editor** or **Studio Code Server** addon to paste the YAML from `config/weather_satellite.yaml` into your `configuration.yaml`. Verify the code in **Developer Tools > YAML** before restarting.
+* **5. The Weather Satellite:** `sensor.glados_weather_context` must be configured in your `configuration.yaml` (See `config/weather_satellite.yaml`).
+    - The Weather Satellite is "optional" but highly recommended for full temporal awareness.
+    - Without it, GLaDOS is blind to future conditions and can only report current telemetry.
+    - It is configured by default for the `weather.forecast_home` entity; update the entityID in `weather_satellite.yaml` if using a different provider.
+ 
+    - **Installation:** Use the **File Editor** or **Studio Code Server** addon to paste the YAML from `config/weather_satellite.yaml` into your `configuration.yaml`. it is NOT NECESSARY to delete, or overwrite anything inside of `configuration.yaml` in order to install the Weather Satellite.
+    - Verify the code in **Developer Tools > YAML** before restarting. If it is green, you're cleared for a restart. GLaDOS will have access to "future forecasting data" that is updated hourly, and upon every restart.
 
 ---
 
@@ -103,7 +105,12 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
 
 3. **The Cortex:** Add `glados_cortex.yaml` as a script in Home Assistant to route LLM intents to your hardware.
 
-4. **Customize:** The information below will show you how to tailor the GLaDOS Intention Engine to your homes needs! (that's the fun part)  
+4. **The Weather Satellite:** Use the **File Editor** or **Studio Code Server** addon to paste the YAML from `config/weather_satellite.yaml` into your `configuration.yaml`.
+5. **Music Assistant Voice Script** should be installed following the instructions 
+
+6.  **Customize:** The information below will show you how to tailor the GLaDOS Intention Engine to your homes needs! (that's the fun part)
+
+7.   
 
 ---
 
