@@ -12,19 +12,25 @@
 | **4. KINETIC** | Facility Hardware | **Action:** Physical State Change (Lights, Climate, Security) |
 
 ---
-
-### Model Performance & R&D Note
+### Model Performance
 The current iteration of the GLaDOS Intention Engine (v3.1.1) is designed to push the functional ceiling of 8B-parameter models. While Llama 3.1 8B is highly capable, it requires strict logic boundaries to maintain very near "zero-hallucination" reliability in a production ready, locally-hosted, and privately secured smart-home environment that utilizes affordable, consumer-grade hardware.
-
+---
 ### The Scaling Strategy
-The GLaDOS Intention Engine (v3.1.1) is built on a modular architecture. Rather than relying on raw model "smartness", logic validation is offloaded to the `glados_cortex` layer. This design ensures that system reliability, and day-to-day functionality is a product of deliberate engineering rather than a smaller 8B model's inherent "smartness". Creating a resilient foundation that is ready to scale as additional compute and higher parameter counts become available.
-
+The GLaDOS Intention Engine (v3.1.1) utilizes a modular architecture to turn the 8B parameter ceiling into a structural advantage. By offloading logic validation to the `glados_cortex` layer, reliability becomes a product of deliberate user configuration rather than raw model probability. This ensures the system functions deterministically for your unique purpose today, while creating a resilient foundation that is ready to scale immediately should higher compute resources become available.
 ---
 
-### 🛠 Prerequisites
-Before deploying the "Brain," ensure the following infrastructure is active:
 
-* **Local LLM:** Llama 3.1 8B running via Ollama.
+
+***All of the information included below is your guide to installing the (v3.1.1) GLaDOS Intention Engine within your own home. It will also show you exactly how to customize it, too. Enjoy! But not too much, specimen.***
+
+
+
+---
+### 🛠 Hardware + Software Prerequisites
+Before deploying the "Brain" yourself, ensure the following infrastructure is active within your facility:
+---
+
+**1. The Spirit (Local LLM):** Llama 3.1 8B running via Ollama.
 
 ---
 
@@ -85,10 +91,15 @@ Before deploying the "Brain," ensure the following infrastructure is active:
   
 ---
 
-### 📥 Implementation Instructions
-1. **System Prompt:** Copy the prompt below (starting at `IDENTITY`, and ending after the `FINAL SYSTEM CHECK` line) into the "System Message" box of your Extended OpenAI Conversation addon.
+### 📥 Implementation Instructions (ULTRA SIMPLIFIED VERSION)
+
+1. **System Prompt:** Copy the prompt below (starting at `IDENTITY`, and ending after the `FINAL SYSTEM CHECK` line) into the "Prompt Template" box of your Extended OpenAI Conversation addon.
+
 2. **Function Block:** Copy the `EXTENDED OPENAI CONVERSATION FUNCTIONS` block at the bottom of this file into the "Functions" section of the addon.
+
 3. **The Cortex:** Add `glados_cortex.yaml` as a script in Home Assistant to route LLM intents to your hardware.
+
+4. **Customize:** The information below will show you how to tailor the GLaDOS Intention Engine to your homes needs! (that's the fun part)  
 
 ---
 
@@ -105,7 +116,7 @@ Each respective document in this repository includes in-depth configuration deta
 
 ---
 
-BELOW ARE THE CRITICAL EDITS RELEVANT TO THIS SPECIFIC DOCUMENT:
+### BELOW ARE THE CRITICAL EDITS RELEVANT TO THIS SPECIFIC DOCUMENT:
 
 ---
 
