@@ -203,7 +203,7 @@ Including these in your training examples will "poison" GLaDOS and cause unpredi
 
 
 
-%+%+%+%+%+%+%+%+EXTENDED OPENAI CONVERSATION PROMPT TEMPLATE+%+%+%+%+%+%+%+%+%
+
 
 
 IDENTITY
@@ -493,7 +493,9 @@ FINAL SYSTEM CHECK: 1. If the request has two parts ("and", "then",), did you ge
 
 
 
-%+%+%+%+%++%+%+EXTENDED OPENAI CONVERSATION FUNCTIONS BLOCK+%+%+%+%+%+%+%+%+%+%+%+
+
+
+---
 
 ## Install Instructions: Function Schema
 *The following block defines the tool-calling parameters for the GLaDOS Intention Engine. Place this in the **"Functions"** field within the Extended OpenAI Conversation addon settings, starting with "-spec", and ending after the very last line of the document. Do not place this inside the "System Prompt" text box.*
