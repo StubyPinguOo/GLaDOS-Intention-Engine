@@ -497,8 +497,7 @@ FINAL SYSTEM CHECK: 1. If the request has two parts ("and", "then",), did you ge
 ## Install Instructions: Function Schema
 *The following block defines the tool-calling parameters for the GLaDOS Intention Engine. Place this in the **"Functions"** field within the Extended OpenAI Conversation addon settings, starting with "-spec", and ending after the very last line of the document. Do not place this inside the "System Prompt" text box.*
 
-
-
+```yaml
 - spec:
     name: ExecuteProtocol
     description: Executes a facility protocol via the central Cortex router.
