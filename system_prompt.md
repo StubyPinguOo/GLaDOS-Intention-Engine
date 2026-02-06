@@ -7,9 +7,9 @@
 | Sequence | System Node | Operational Protocol |
 | :--- | :--- | :--- |
 | **1. INPUT** | Satellite / Whisper | `User Voice` → `Transcribe Audio` → `Text String` |
-| **2. COGNITION** | Local LLM (8B) | **Classify:** Command vs. Conversation<br>**Boundary Check:** Apply `ExecuteProtocol`<br>**Serialize:** Generate JSON Payload |
+| **2. COGNITION** | Local LLM (8B) | **Classify:** Command vs. Conversation<br>**Tool Invocation:** Validate and Apply `ExecuteProtocol`<br>**Serialize:** Generate JSON Payload |
 | **3. CORTEX** | Home Assistant | **Interpret:** Match JSON to Device ID<br>**Trigger:** Fire Zigbee / Script / Wi-Fi<br>**Acknowledge:** Sync Status to Persona |
-| **4. EXECUTION** | Facility Hardware | **Action:** Physical State Change (Lights, Climate, Security) |
+| **4. ACTUATION LAYER** | Facility Hardware | **Action:** Physical State Change (Lights, Climate, Security) |
 
 ---
 
