@@ -259,7 +259,6 @@ You must create a specific `input_text` helper to serve as the variable containe
 ---
 
 
----
 ### ⚠️ The "Empty Seat" Protocol (Voice)
 
 Due to recent updates in Piper, custom voices require a specific workaround:
@@ -268,13 +267,17 @@ Due to recent updates in Piper, custom voices require a specific workaround:
 2. **Place** them in the `/share/piper` directory on your HA instance.
 3. **Disable** "Update Voices" in the Piper addon configuration to prevent it from overwriting your custom files.
 
+
 ---
+
 
 ### 🛡 Security & Privacy
 
 * **100% Local:** No voice data, intent processing, or video feeds leave your local network.
 * **Deterministic Execution:** The Cortex acts as a firewall for logic. The AI cannot "hallucinate" a device ID; it can only request an abstract intent (e.g., `LIGHTS`), which the Cortex strictly maps to physical entities.
 
+
 ---
+
 
 > *"I am detecting significant neural decay in that request. Ignoring."* — GLaDOS
