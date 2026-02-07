@@ -177,7 +177,9 @@ Copy this block into the **Functions** field of the Extended OpenAI Conversation
           hs_color: "{{ hs_color | default(none) }}"
 ```
 
+
 ---
+
 
 ### 🔧 Customization: The "Triad" Expansion Guide
 
@@ -200,8 +202,35 @@ To add a new capability (e.g., "Open the Garage"), you must maintain synchroniza
               entity_id: cover.garage_door
 ```
 
+
 ---
 
+
+### 🧠 The Hippocampus (Memory Module)
+
+*Give GLaDOS a place to store short-term data about her test subjects.*
+
+You must create a specific `input_text` helper to serve as the variable container for the `Subject_Memory` field used in the System Prompt.
+
+#### Method A: The UI Way (Easiest)
+
+1. Go to **Settings > Devices & Services > Helpers**.
+
+2. Click **+ Create Helper** and select **Text**.
+
+3. **Name:** `Memory General`
+
+4. **Entity ID:** Ensure it generates as `input_text.memory_general`.
+
+5. **Max Length:** Set to `255` (this is the hard limit for Home Assistant text states).
+
+6. **Icon:** `mdi:brain` (optional).
+
+
+---
+
+
+---
 ### ⚠️ The "Empty Seat" Protocol (Voice)
 
 Due to recent updates in Piper, custom voices require a specific workaround:
