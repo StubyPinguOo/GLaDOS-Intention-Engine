@@ -325,14 +325,6 @@ You can edit the Cortex in two ways: via the **Visual Editor (UI)** for ease of 
 
 
 ---
-
-
-
-
-
-
-
----
 ADDITIONAL TIP:
 ---
 
