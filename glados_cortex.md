@@ -28,7 +28,9 @@ graph LR
 
 
 ---
+
 ***All the information from here will give you an understanding of how to "plug-in" the template **Cortex**, and then customize it from there. Or alternatively, write your own version entirely.*** 
+
 ---
 
 
@@ -242,6 +244,7 @@ To add a new capability/intent ("Open the Garage"), you must maintain synchroniz
 4.  **Cortex (`glados_cortex.yaml`):** Add the routing logic below so the Nervous System knows which wire to pull.
 
 **The Result:** Saying "Open the landing bay doors" will let GLaDOS open your garage door, and say something snarky back to you.
+
 ---
 
 ### 🛠 How to Edit the Cortex
