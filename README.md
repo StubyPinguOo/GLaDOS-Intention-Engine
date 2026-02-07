@@ -127,6 +127,10 @@ template:
           forecast: "{{ weather_data['weather.forecast_home'].forecast }}"
 ```
 
+
+---
+
+
 #### 2. The Cortex (Nervous System)
 
 *The router that translates "Intent" into "Action".*
@@ -146,6 +150,10 @@ Copy the contents of `system_prompt.md` into the **Prompt Template** field of th
 * **Facility Status Report:** Injects real-time sensor data (Time, Solar, Weather, Hardware).
 * **Sequential Processing:** Handles complex requests ("Turn on the TV *and* set lights to blue").
 * **Logic Gate:** Forces the AI to verify conditions (e.g., "Only if it's dark") *before* acting.
+
+
+---
+
 
 #### 4. The Hands (Function Block)
 *The tool definition allowing the AI to "press buttons".*
