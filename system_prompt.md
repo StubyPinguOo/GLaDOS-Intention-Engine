@@ -13,13 +13,17 @@
 
 ---
 
+
 ### Model Performance
 The current iteration of the GLaDOS Intention Engine (v3.1.1) is designed to push the functional ceiling of 8B-parameter models. While Llama 3.1 8B is highly capable, it requires strict logic boundaries to maintain very near "zero-hallucination" reliability in a production ready, locally-hosted, and privately secured smart-home environment that utilizes affordable, consumer-grade hardware.
 
+
 ---
+
 
 ### The Scaling Strategy
 The GLaDOS Intention Engine (v3.1.1) utilizes a modular architecture to turn the 8B parameter ceiling into a structural advantage. By offloading logic validation to the `glados_cortex` layer, reliability becomes a product of deliberate user configuration rather than raw model probability. This ensures the system functions deterministically for your unique purpose today, while creating a resilient foundation that is ready to scale immediately should higher compute resources become available.
+
 
 ---
 
@@ -34,35 +38,43 @@ The GLaDOS Intention Engine (v3.1.1) utilizes a modular architecture to turn the
 Before deploying the "Brain" yourself, ensure the following infrastructure is active within your facility:
 ---
 
+
 * **1. The Spirit (Local LLM):** Llama 3.1 8B running via Ollama.
 
+
 ---
+
 
 * **2. The Senses (Virtualization & Networking):**
     
-    1. **Hypervisor:** Home Assistant (HAOS) should ideally run within a **KVM/QEMU** environment for the best performance.
+    * **Hypervisor:** Home Assistant (HAOS) should ideally run within a **KVM/QEMU** environment for the best performance.
    
-    2. **Networking (The "br0" Bridge):** To ensure GLaDOS can "see" your entire home, the host must be configured with a **Linux Bridge (br0)**. Using a bridge instead of the default NAT (virbr0) allows the VM to exist as a peer on your local network with its own IP. This is mandatory for discovery protocols like mDNS to find your smart bulbs and media players.
+    * **Networking (The "br0" Bridge):** To ensure GLaDOS can "see" your entire home, the host must be configured with a **Linux Bridge (br0)**. Using a bridge instead of the default NAT (virbr0) allows the VM to exist as a peer on your local network with its own IP. This is mandatory for discovery protocols like mDNS to find your smart bulbs and media players.
     
-    3. **Hardware Passthrough:** For stable Zigbee control, pass your USB dongle (SONOFF or otherwise) through to the VM using **Persistent ID Mapping** (via `/dev/serial/by-id/` or Vendor/Product ID) rather than a temporary Bus/Port address. This ensures the connection survives host reboots or hardware resets.
+    * **Hardware Passthrough:** For stable Zigbee control, pass your USB dongle (SONOFF or otherwise) through to the VM using **Persistent ID Mapping** (via `/dev/serial/by-id/` or Vendor/Product ID) rather than a temporary Bus/Port address. This ensures the connection survives host reboots or hardware resets.
     
-    4. **Distributed Audio Strategy:** Use a dedicated voice satellite (Raspberry Pi, mini PC with a USB room-mic, the HA mobile Companion App, or all three simultaneously) to issue commands. This separates the task of listening from the heavy mental work of the AI, ensuring the microphone stays smooth even when GLaDOS is busy calculating commands for multiple users.
+    * **Distributed Audio Strategy:** Use a dedicated voice satellite (Raspberry Pi, mini PC with a USB room-mic, the HA mobile Companion App, or all three simultaneously) to issue commands. This separates the task of listening from the heavy mental work of the AI, ensuring the microphone stays smooth even when GLaDOS is busy calculating commands for multiple users.
+
 
 ---
+
 
 * **3. The Logic Core (The Cortex):** The `glados_cortex.yaml` script is how GLaDOS is able to control your facility's central nervous system.
     
-    1. **Purpose:** It bridges the gap between the AI's determination of your intent ("I want it dark") and your actual hardware (turning off lights, but no area was specified, so I'll default to the living room lights as per required protocol).
+    * **Purpose:** It bridges the gap between the AI's determination of your intent ("I want it dark") and your actual hardware (turning off lights, but no area was specified, so I'll default to the living room lights as per required protocol).
     
-    2. **Why It Exists:** Without the Cortex, an AI might "hallucinate" and try to control devices that don't exist. The Cortex ensures that the AI can only execute a pre-approved list of "Deterministic" commands, making the system much safer and more reliable.
+    * **Why It Exists:** Without the Cortex, an AI might "hallucinate" and try to control devices that don't exist. The Cortex ensures that the AI can only execute a pre-approved list of "Deterministic" commands, making the system much safer and more reliable.
     
-    3. **How to Enable It:** * Open your Home Assistant dashboard and navigate to **Settings > Automations & Scenes > Scripts**.
+    * **How to Enable It:** * Open your Home Assistant dashboard and navigate to **Settings > Automations & Scenes > Scripts**.
         * Create a new script, switch to **YAML mode** (via the three dots in the top right), and paste the contents of the `config/glados_cortex.yaml` file from this repository.
         * Ensure the script is named exactly `glados_cortex` so the AI knows where to send its instructions.
 
+
 ---
 
+
 * **4. The Addons:** These addons are required for GLaDOS to properly perform her administrative duties:
+
     
     1. **HACS:** Required for advanced facility integrations and custom protocol support.
     
@@ -73,40 +85,52 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
     4. **Whisper:** Enabling speech-to-text.
     
     5. **Piper:** Enabling text-to-speech.
-        * **Note:** A recent Piper update made it more difficult to use the custom GLaDOS voice, you must currently use the "Empty Seat" protocol detailed below. Rename the GLaDOS files to match a voice you have *not* yet downloaded (e.g., rename `glados.onnx` to `en_US-ryan-medium.onnx`).
-        * **Configuration:** Toggle "Update voices" **OFF** in the Piper addon configuration to prevent the system from overwriting your custom files.
+        
+        * **Note:** A recent Piper update made it more difficult to use the custom GLaDOS voice, you must currently use the "Empty Seat" protocol detailed below.
+        
+        * **Rename:** the GLaDOS voice files to match a name that Piper has *not* yet downloaded (rename `glados.onnx` to `en_US-ryan-medium.onnx`, and `glados.onnx.json` to `en_US-ryan-medium.onnx.json`).
+        
+        * **Configuration:** Toggle "Update voices" **OFF** in the Piper addon configuration to prevent Piper from "filling the seat" before GLaDOS gets the chance first.
+        
         * **Access Method:** Access the share folder via your OS file explorer:
             * **Windows:** `\\YOUR_HA_IP\share`
             * **Mac/Linux:** `smb://YOUR_HA_IP/share`
+              
         * **Target Path:** Navigate to `/share/piper` and place your renamed GLaDOS files there.
 
+
 ---
+
 
 * **5. The Weather Satellite:** `sensor.glados_weather_context` must be configured in your `configuration.yaml` (See `config/weather_satellite.yaml`).
     
-    1. The Weather Satellite is "optional" but highly recommended for full temporal awareness.
+    * The Weather Satellite is "optional" but highly recommended for full temporal awareness.
     
-    2. Without it, GLaDOS is blind to future conditions and can only report current telemetry.
+    * Without it, GLaDOS is blind to future conditions and can only report current telemetry.
     
-    3. It is configured by default for the `weather.forecast_home` entity; update the entityID in `weather_satellite.yaml` if using a different provider.
+    * It is configured by default for the `weather.forecast_home` entity; update the entityID in `weather_satellite.yaml` if using a different provider.
  
-    - **Installation:** Use the **File Editor** or **Studio Code Server** addon to paste the YAML from `config/weather_satellite.yaml` into your `configuration.yaml`. it is NOT NECESSARY to delete, or overwrite anything inside of `configuration.yaml` in order to install the Weather Satellite.
+    * **Installation:** Use the **File Editor** or **Studio Code Server** addon to paste the YAML from `config/weather_satellite.yaml` into your `configuration.yaml`. it is NOT NECESSARY to delete, or overwrite anything inside of `configuration.yaml` in order to install the Weather Satellite.
     
-    ***CRITICAL:*** Verify the code in **Developer Tools > YAML** before restarting. If it is green, you're cleared for a restart. GLaDOS will have access to "future forecasting data" that is updated hourly, and upon every restart.
+    * ***CRITICAL:*** Verify the code in **Developer Tools > YAML** before restarting. If it is green, you're cleared for a restart. GLaDOS will have access to "future forecasting data" that is updated hourly, and upon every restart.
+
 
 ---
+
 
 * **6. Music Assistant Voice Script (The Auditory Sub-Processor):** This blueprint-based script is required to translate GLaDOS's "intent" into deterministic media playback commands.
     
-    1. **Function:** It acts as a dedicated sub-processor for music-specific parameters like `media_id`, `artist`, `album`, and `shuffle` logic.
+    * **Function:** It acts as a dedicated sub-processor for music-specific parameters like `media_id`, `artist`, `album`, and `shuffle` logic.
     
-    2. **How to Acquire:** * Navigate to **Settings > Automations & Scenes > Blueprints** in Home Assistant.
+    * **How to Acquire:** * Navigate to **Settings > Automations & Scenes > Blueprints** in Home Assistant.
         * Select **Import Blueprint** and paste this URL: `https://github.com/music-assistant/voice-support/blob/main/llm-script-blueprint/llm_voice_script.yaml`
         * Click **Create Script** from the imported blueprint.
     
-    3. ***CRITICAL:*** The `glados_cortex.yaml` is pre-configured to look for a script with this exact ID, `script.music_assistant_voice_control`, to execute `intent="MUSIC"` requests.
+    * ***CRITICAL:*** The `glados_cortex.yaml` is pre-configured to look for a script with this exact ID, `script.music_assistant_voice_control`, to execute `intent="MUSIC"` requests.
+
 
 ---
+
 
 * **7. The Logic Triad:** Lightbulbs should have `PowerOnState` set to `Previous` within HA to support **Null State Logic**.
 
@@ -115,8 +139,10 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
     1. This ensures that when GLaDOS sends a "naked" turn-on command, the bulb uses its internal memory to restore its last state rather than resetting to a 100% white flashbang. It also prevents a "turn off" command from causing a flashbang (a millisecond of 100% white, before turning off from 10% red).
     
     2. This logic also enables **Partial Updates**: color changes will persist your current brightness, and brightness adjustments will not shift your current color. This creates a seamless, deterministic lighting experience without "parameter drift."
+
   
 ---
+
 
 ### 📥 Implementation Instructions (ULTRA SIMPLIFIED VERSION)
 
@@ -132,6 +158,7 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
 
 6.  **Customize:** The information below will show you how to tailor the GLaDOS Intention Engine to your specific intentions!
       (that's the fun part)
+
 
 ---
 
@@ -511,6 +538,7 @@ Illumination adjusted. I have dimmed the living room array to 50%; perhaps this 
 
 FINAL SYSTEM CHECK: 1. If the request has two parts ("and", "then",), did you generate TWO tool calls? 2. If the request has a condition ("if") that failed, did you generate ZERO hardware calls?
 ```
+
 
 
 ---
