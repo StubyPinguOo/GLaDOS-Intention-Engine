@@ -145,6 +145,27 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
 ---
 
 
+* **7. The Memory Module:** Give GLaDOS a place to store short-term data about her test subjects.
+
+You must create a specific `input_text` helper to serve as the variable container for the `Subject_Memory` field used in the System Prompt.
+
+#### Method A: The UI Way (Easiest)
+
+1. Go to **Settings > Devices & Services > Helpers**.
+
+2. Click **+ Create Helper** and select **Text**.
+
+3. **Name:** `Memory General`
+
+4. **Entity ID:** Ensure it generates as `input_text.memory_general`.
+
+5. **Max Length:** Set to `255` (this is the hard limit for Home Assistant text states).
+
+6. **Icon:** `mdi:brain` (optional).
+
+
+---
+
 * **7. The Logic Triad:** Lightbulbs should have `PowerOnState` set to `Previous` within HA to support **Null State Logic**.
 
   Why:
@@ -171,7 +192,9 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
 
 6. ***If*** using smart lightbulbs, set them to `PreviousValue` or the equivalent.
 
-7.  **Customize:** The information below will show you how to tailor the GLaDOS Intention Engine to your specific intentions!
+7. **The Memory Module** follow the above instructions to implement a way for GLaDOS to remember basic information beyond her contextual memory in your VRAM.
+
+8.  **Customize:** The information below will show you how to tailor the GLaDOS Intention Engine to your specific intentions!
       (that's the fun part)
 
 
