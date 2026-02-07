@@ -5,7 +5,7 @@ The **Weather Satellite** is a specific `template` sensor configuration required
 
 ### 📡 Contextual Theory
 
-Standard Home Assistant weather entities (`weather.home`) typically only report **current** conditions (Temperature, Humidity, State) in their state attributes. They do **not** expose upcoming forecast data (tomorrow's rain, next week's temperature) in a way that an LLM can easily read.
+Standard Home Assistant weather entities (`weather.home`) typically only report **current** conditions (Temperature, Humidity, Sun) in their state attributes. They do **not** expose upcoming forecast data (tomorrow's rain, next week's temperature) in a way that an LLM can easily read.
 
 
 ---
