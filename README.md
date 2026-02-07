@@ -2,7 +2,9 @@
 
 > **"Facility Readiness Protocol: Active."**
 
-The **GLaDOS Intention Engine** is a local-first, modular intelligence layer designed to bridge the gap between *abstract LLM intent* and *reliable, consistent, smart-home execution.* Built specifically to push the functional ceiling of the **Llama 3.1 8B** model, it uses a deterministic "Cortex" to ensure that the AI's persona remains perfectly cynical while its hardware execution remains perfectly reliable.
+The **GLaDOS Intention Engine** is a local-first, modular intelligence layer designed to bridge the gap between *abstract LLM intent* and *reliable, consistent, smart-home execution.* 
+
+Built specifically to push the functional ceiling of the **Llama 3.1 8B** model, it uses a deterministic "Cortex" to ensure that the AI's persona remains perfectly cynical while its hardware execution remains perfectly reliable.
 
 ---
 
