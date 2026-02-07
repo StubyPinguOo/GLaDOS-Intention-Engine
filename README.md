@@ -76,7 +76,7 @@ Before deploying the "Brain" yourself, ensure the following infrastructure is ac
 
 6. ***If*** using smart lightbulbs, set them to `PreviousValue` or the equivalent.
 
-7. **The Memory Module** follow the above instructions to implement a way for GLaDOS to remember basic information beyond her contextual memory in your VRAM.
+7. **The Memory Module** follow the instructions to implement a way for GLaDOS to remember basic information beyond her contextual memory in your VRAM.
 
 8.  **Customize:** The information in this repository will show you how to tailor the GLaDOS Intention Engine to your specific facility hardware!
       (that's the fun part)
