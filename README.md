@@ -55,7 +55,7 @@ NEW FEATURES (v3.2, AND v4.0): Updated weather sensors within 'configuration.yam
 INCOMING MODULES (V3.2, AND v4.0): Optional sensors to "plug in" to 'configuration.yaml'. 
 
     1. A security system (utilizing a combo of: Frigate, Moondream LLM for visual analysis, LLM Vision HACS integration, and sensors from 'configuration.yaml'). 
-    2. A 'BirdNET-GO' Integration that reports detections, daily/weekly bird stats right to your dashboard.
+    2. A 'BirdNET-GO' Integration that reports detections, daily/weekly bird stats right to your dashboard, and allows your Intention Engine to tell ya what critters are flying by.
 
 
 ---    
