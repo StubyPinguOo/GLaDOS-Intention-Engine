@@ -1,11 +1,12 @@
-# GLaDOS Intention Engine (v3.1.1)
+# Intention Engine (v3.1.1)
 
 > **"Facility Readiness Protocol: Active."**
 
-The **GLaDOS Intention Engine** is a local-first, modular intelligence layer designed to bridge the gap between *abstract LLM intent* and *reliable, consistent, smart-home execution.* 
+The **Intention Engine** is a local-first, modular intelligence layer designed to bridge the gap between *abstract LLM intent* and *reliable, consistent, smart-home execution.* 
 
 Built specifically to push the functional ceiling of the **Llama 3.1 8B** model, it uses a deterministic "Cortex" to ensure that the AI's persona remains perfectly cynical while its hardware execution remains perfectly reliable.
 
+NOTE: v3.1.1 will soon be migrated to a "Legacy" release, and be replaced by v4.0 which will include a custom fine-tuned LLM, trained from Llama 3.1:8B-Instruct. v4.0 will ALSO inlude the initial release of the "Dataset Studio" that allows users to configure their own intents, and generate accurate datasets to train their own customized "Intention Engines". Stay tuned!   
 ---
 
 ### 🧬 System Architecture
